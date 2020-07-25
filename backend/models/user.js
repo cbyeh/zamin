@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
-const saltRounds = 10;
 const jwt = require("jsonwebtoken");
 const moment = require("moment");
+
+const saltRounds = 10;
 
 const userSchema = mongoose.Schema({
   email: {
@@ -21,7 +22,7 @@ const userSchema = mongoose.Schema({
   password: {
     type: String,
     required: true,
-    minglength: 5,
+    minlength: 5,
   },
   name: {
     type: String,
