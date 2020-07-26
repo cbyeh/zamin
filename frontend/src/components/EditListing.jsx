@@ -2,6 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 
 class EditListing extends React.Component {
+  constructor() {
+    super();
+  }
+  componentDidMount() {}
   render() {
     return (
       <div className="listingsContainer">
