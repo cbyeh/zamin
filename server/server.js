@@ -4,8 +4,9 @@ const cors = require("cors");
 
 require("dotenv").config();
 
+const errorHandler = require("./src/middleware/errorHandler");
+
 const app = express();
-const port = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
@@ -17,11 +18,16 @@ connection.once("open", () => {
   console.log("MongoDB database connection established successfully");
 });
 
-const usersRouter = require("./routes/users");
-const listingsRouter = require("./routes/listings");
+const usersRouter = require("./src/routes/users");
+const listingsRouter = require("./src/routes/listings");
 
 app.use("/users", usersRouter);
-app.use("/listings", listingsRouter); //
+app.use("/listings", listingsRouter);
+
+app.use(errorHandler.notFound);
+app.use(errorHandler.errorHandler);
+
+const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);

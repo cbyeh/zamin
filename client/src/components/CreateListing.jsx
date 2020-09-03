@@ -1,44 +1,59 @@
 import React from "react";
-import { Button } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 import PropTypes from "prop-types";
+import axios from "axios";
 
 class CreateListing extends React.Component {
   constructor() {
     super();
-    this.onChangeGeolocation = this.onChangeGeolocation.bind(this);
-    this.onChangeHeadline = this.onChangeHeadline.bind(this);
-    this.onChangeDescription = this.onChangeDescription.bind(this);
-    this.onChangeAddress = this.onChangeAddress.bind(this);
+
     this.state = {
       owner: "",
       geolocation: "",
       headline: "",
       description: "",
       address: "",
-      date: new Date(),
+      date: new Date(), // Time created
+      pictures: [],
       responses: [],
     };
+
+    this.onChangeGeolocation = this.onChangeGeolocation.bind(this);
+    this.onChangeHeadline = this.onChangeHeadline.bind(this);
+    this.onChangeDescription = this.onChangeDescription.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
+
+  componentDidMount() {
+    // TODO: Get from axios
+    this.setState({ owner: "Me" });
+  }
+
   onChangeGeolocation(e) {
     this.setState({
       geolocation: e.target.value,
     });
   }
+
   onChangeHeadline(e) {
     this.setState({
       headline: e.target.value,
     });
   }
+
   onChangeDescription(e) {
     this.setState({
       description: e.target.value,
     });
   }
+
   onChangeAddress(e) {
     this.setState({
       address: e.target.value,
     });
   }
+
   // When form is completed
   onSubmit(e) {
     e.preventDefault();
@@ -48,54 +63,59 @@ class CreateListing extends React.Component {
       headline: this.state.headline,
       description: this.state.description,
       address: this.state.address,
+      date: new Date().getTime(),
     };
     // Submit to database here
     console.log(listing);
     // Bring user to homepage
-    window.location = "/";
+    // window.location = "/";
   }
+
   render() {
     return (
-      <div>
+      <>
         <h3>Create New Listing</h3>
-        <form onSubmit={this.onSubmit}>
-          <div className="headline">
-            <label>Headline: </label>
-            <input
-              type="text"
+        <Form onSubmit={this.onSubmit}>
+          <Form.Group controlId="formHeadline">
+            <Form.Label>Headline</Form.Label>
+            <Form.Control
               required
-              className="form-control"
-              value={this.state.headline}
+              size="lg"
+              type="text"
+              placeholder="Specials, discounts, etc"
               onChange={this.onChangeHeadline}
             />
-          </div>
-          <div className="description">
-            <label>Description: </label>
-            <input
-              type="text"
-              className="form-control"
-              value={this.state.description}
+          </Form.Group>
+          <Form.Group>
+            <Form.File id="exampleFormControlFile1" label="Include images" />
+            <Form.Text className="text-muted">Up to (5) max.</Form.Text>
+          </Form.Group>
+          <Form.Group controlId="formDescription">
+            <Form.Label>Description</Form.Label>
+            <Form.Control
+              as="textarea"
+              rows="3"
+              placeholder="Include more details here..."
               onChange={this.onChangeDescription}
             />
-          </div>
-          <div className="address">
-            <label>Address: </label>
-            <input
-              type="text"
-              className="form-control"
-              value={this.state.address}
-              onChange={this.onChangeAddress}
+          </Form.Group>
+          <Form.Group controlId="Address">
+            <Form.Label>Address</Form.Label>
+            <Form.Control
+              as="textarea"
+              rows="3"
+              placeholder="Include more details here..."
             />
-          </div>
-          <div className="form-group">
-            <input
-              type="submit"
-              value="Create Exercise Log"
-              className="btn btn-primary"
-            />
-          </div>
-        </form>
-      </div>
+          </Form.Group>
+          <Button
+            variant="primary"
+            className="submit-form-button"
+            type="submit"
+          >
+            Register
+          </Button>
+        </Form>
+      </>
     );
   }
 }

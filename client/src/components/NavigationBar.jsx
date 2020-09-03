@@ -10,8 +10,6 @@ import {
 } from "react-bootstrap";
 import PropTypes from "prop-types";
 
-// import "../styles/Navbar.css";
-
 function handleLogin() {
   return 0;
 }

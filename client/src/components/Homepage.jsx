@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Axios from "axios";
 
 class Homepage extends React.Component {
   constructor() {
@@ -8,6 +9,13 @@ class Homepage extends React.Component {
       defaultListings: [],
     };
   }
+
+  componentDidMount() {
+    Axios.get("http://localhost:5000/listings/").then((res) => {
+      this.setState({ defaultListings: res.data });
+    });
+  }
+
   render() {
     const { defaultListings } = this.state;
     return (
