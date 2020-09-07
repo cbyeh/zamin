@@ -1,8 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
+import axios from "axios";
 
 const Listing = (props) => {
-  <></>;
+  // <>
+  //   <h1>listing</h1>
+  // </>;
+  return 1;
 };
 
 class ListingList extends React.Component {
@@ -15,7 +19,7 @@ class ListingList extends React.Component {
 
   componentDidMount() {
     // Load all listings for now
-    Axios.get("http://localhost:5000/listings/").then((res) => {
+    axios.get("http://localhost:5000/listings/").then((res) => {
       this.setState({ defaultListings: res.data });
     });
   }
