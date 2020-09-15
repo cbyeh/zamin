@@ -9,7 +9,7 @@ const userSchema = mongoose.Schema({
   username: {
     type: String,
     // required: true,
-    unique: true,
+    // unique: true,
     trim: true,
     minlength: 4,
   },
@@ -17,6 +17,7 @@ const userSchema = mongoose.Schema({
     type: String,
     // required: true,
     trim: true,
+    index: true,
     unique: true,
   },
   password: {
@@ -99,6 +100,7 @@ const userSchema = mongoose.Schema({
 //   });
 // };
 
+// Call .init() to ensure uniqueness
 const User = mongoose.model("User", userSchema);
 
 module.exports = { User };
