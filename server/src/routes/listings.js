@@ -1,5 +1,5 @@
 const router = require("express").Router();
-let Listing = require("../models/listing");
+const { Listing } = require("../models/listing");
 
 router.route("/").get((req, res) => {
   Listing.find()
@@ -15,16 +15,9 @@ router.route("/add").post((req, res) => {
   const headline = req.body.headline;
   const description = req.body.description;
   const address = req.body.address;
-  const date = Date.parse(req.body.date);
+  // const date = req.body.date;
 
-  const newListing = new Listing({
-    owner,
-    geolocation,
-    headline,
-    description,
-    address,
-    date,
-  });
+  const newListing = new Listing({ headline, address });
 
   newListing
     .save()

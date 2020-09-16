@@ -14,7 +14,6 @@ class CreateListing extends React.Component {
       headline: "",
       description: "",
       address: "",
-      date: new Date(), // Time created
       pictures: [],
       responses: [],
     };
@@ -22,12 +21,13 @@ class CreateListing extends React.Component {
     this.onChangeGeolocation = this.onChangeGeolocation.bind(this);
     this.onChangeHeadline = this.onChangeHeadline.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
+    this.onChangeAddress = this.onChangeAddress.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentDidMount() {
-    // TODO: Get from axios
-    this.setState({ owner: "Me" });
+    // // TODO: Get from axios
+    // this.setState({ owner: "Me" });
   }
 
   onChangeGeolocation(e) {
@@ -58,15 +58,18 @@ class CreateListing extends React.Component {
   onSubmit(e) {
     e.preventDefault();
     const listing = {
-      owner: this.state.owner,
-      geolocation: this.state.geolocation,
+      // owner: this.state.owner,
+      // geolocation: this.state.geolocation,
       headline: this.state.headline,
-      description: this.state.description,
+      // description: this.state.description,
       address: this.state.address,
-      date: new Date().getTime(),
     };
     // Submit to database here
     console.log(listing);
+    axios
+      .post("http://localhost:5000/listings/add", listing)
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
     // Bring user to homepage
     // window.location = "/";
   }
@@ -79,11 +82,11 @@ class CreateListing extends React.Component {
           <Form.Group controlId="formHeadline">
             <Form.Label>Headline</Form.Label>
             <Form.Control
-              required
               size="lg"
               type="text"
               placeholder="Specials, discounts, etc"
               onChange={this.onChangeHeadline}
+              required
             />
           </Form.Group>
           <Form.Group>
@@ -99,12 +102,14 @@ class CreateListing extends React.Component {
               onChange={this.onChangeDescription}
             />
           </Form.Group>
-          <Form.Group controlId="Address">
+          <Form.Group controlId="formAddress">
             <Form.Label>Address</Form.Label>
             <Form.Control
               as="textarea"
               rows="3"
               placeholder="Include more details here..."
+              onChange={this.onChangeAddress}
+              required
             />
           </Form.Group>
           <Button
@@ -112,7 +117,7 @@ class CreateListing extends React.Component {
             className="submit-form-button"
             type="submit"
           >
-            Register
+            Create!
           </Button>
         </Form>
       </>

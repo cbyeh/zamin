@@ -5,48 +5,53 @@ const moment = require("moment");
 
 const saltRounds = 10;
 
-const userSchema = mongoose.Schema({
-  username: {
-    type: String,
-    // required: true,
-    // unique: true,
-    trim: true,
-    minlength: 4,
+const userSchema = mongoose.Schema(
+  {
+    username: {
+      type: String,
+      // required: true,
+      // unique: true,
+      trim: true,
+      // minlength: 4,
+    },
+    email: {
+      type: String,
+      // required: true,
+      trim: true,
+      index: true,
+      unique: true,
+    },
+    password: {
+      type: String,
+      // required: true,
+      minlength: 5,
+    },
+    name: {
+      type: String,
+      maxlength: 50,
+    },
+    lastname: {
+      type: String,
+      maxlength: 50,
+    },
+    role: {
+      type: Number,
+      default: 0,
+    },
+    image: {
+      type: String,
+    },
+    token: {
+      type: String,
+    },
+    tokenExp: {
+      type: Number,
+    },
   },
-  email: {
-    type: String,
-    // required: true,
-    trim: true,
-    index: true,
-    unique: true,
-  },
-  password: {
-    type: String,
-    // required: true,
-    minlength: 5,
-  },
-  name: {
-    type: String,
-    maxlength: 50,
-  },
-  lastname: {
-    type: String,
-    maxlength: 50,
-  },
-  role: {
-    type: Number,
-    default: 0,
-  },
-  image: {
-    type: String,
-  },
-  token: {
-    type: String,
-  },
-  tokenExp: {
-    type: Number,
-  },
-});
+  {
+    timestamps: true,
+  }
+);
 
 // userSchema.pre("save", function (next) {
 //   var user = this;
@@ -100,7 +105,6 @@ const userSchema = mongoose.Schema({
 //   });
 // };
 
-// Call .init() to ensure uniqueness
 const User = mongoose.model("User", userSchema);
 
 module.exports = { User };

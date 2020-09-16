@@ -17,6 +17,7 @@ class CreateUser extends React.Component {
 
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
+    this.onChangePassword = this.onChangePassword.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
@@ -31,6 +32,12 @@ class CreateUser extends React.Component {
     });
   }
 
+  onChangePassword(e) {
+    this.setState({
+      password: e.target.value,
+    });
+  }
+
   onChangeEmail(e) {
     this.setState({
       email: e.target.value,
@@ -42,14 +49,16 @@ class CreateUser extends React.Component {
     e.preventDefault();
     const user = {
       email: this.state.email,
-      // username: this.state.username,
+      username: this.state.username,
+      password: this.state.password,
     };
     // Submit to database here
     console.log(user);
     // TODO: use env for url
     axios
       .post("http://localhost:5000/users/add", user)
-      .then((res) => console.log(res.data));
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
     // Bring user to homepage
     // window.location = "/";
     // Set username to blank in case it is taken
@@ -75,7 +84,11 @@ class CreateUser extends React.Component {
         </Form.Group>
         <Form.Group controlId="formPassword">
           <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
+          <Form.Control
+            type="password"
+            placeholder="Password"
+            onChange={this.onChangePassword}
+          />
           {/* TODO: put at least 5 characters */}
         </Form.Group>
         <Form.Group controlId="formBasicCheckbox">

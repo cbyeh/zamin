@@ -1,5 +1,4 @@
-const express = require("express");
-const router = express.Router();
+const router = require("express").Router();
 const { User } = require("../models/user");
 const { auth } = require("../middleware/auth");
 
@@ -15,8 +14,9 @@ router.route("/").get((req, res) => {
 
 router.route("/add").post((req, res) => {
   const email = req.body.email;
-  // const username = req.body.username;
-  const newUser = new User({ email });
+  const username = req.body.username;
+
+  const newUser = new User({ email, username });
 
   newUser
     .save()

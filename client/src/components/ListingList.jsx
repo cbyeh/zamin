@@ -26,7 +26,7 @@ class ListingList extends React.Component {
 
   deleteListing(id) {
     axios
-      .delete("http://localhost:5000/exercoses/" + id)
+      .delete("http://localhost:5000/exercises/" + id)
       .then((res) => console.log(res.data));
     this.setState({
       listings: this.state.listings.filter((el) => el._id !== id),
