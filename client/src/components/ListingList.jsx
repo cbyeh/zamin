@@ -1,13 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
-const Listing = (props) => {
-  // <>
-  //   <h1>listing</h1>
-  // </>;
-  return 1;
-};
+const Listing = (props) => (
+  <tr>
+    <td>{props.listing.headline}</td>
+    <td>{props.listing.address}</td>
+  </tr>
+);
 
 class ListingList extends React.Component {
   // TODO: Props with sorting and filtering
@@ -19,14 +20,19 @@ class ListingList extends React.Component {
 
   componentDidMount() {
     // Load all listings for now
-    axios.get("http://localhost:5000/listings/").then((res) => {
-      this.setState({ defaultListings: res.data });
-    });
+    axios
+      .get("http://localhost:5000/listings/")
+      .then((res) => {
+        this.setState({ listings: res.data });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   deleteListing(id) {
     axios
-      .delete("http://localhost:5000/exercises/" + id)
+      .delete("http://localhost:5000/listings/" + id)
       .then((res) => console.log(res.data));
     this.setState({
       listings: this.state.listings.filter((el) => el._id !== id),
@@ -47,9 +53,17 @@ class ListingList extends React.Component {
 
   render() {
     return (
-      <div className="listingsContainer">
-        <h1>Listings here</h1>
-      </div>
+      <>
+        <table className="table">
+          <thead className="thead-light">
+            <tr>
+              <th>Headline</th>
+              <th>Address</th>
+            </tr>
+          </thead>
+          <tbody>{this.listingList()}</tbody>
+        </table>
+      </>
     );
   }
 }

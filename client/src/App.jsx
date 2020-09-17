@@ -6,7 +6,6 @@ import Homepage from "./components/Homepage";
 import CreateListing from "./components/CreateListing";
 import CreateUser from "./components/CreateUser";
 import EditListing from "./components/EditListing";
-import ListingList from "./components/ListingList";
 
 function App() {
   return (
@@ -15,7 +14,7 @@ function App() {
       <Router>
         <div className="container">
           <br />
-          <Route path="/" exact component={ListingList} />
+          <Route path="/" exact component={Homepage} />
           <Route path="/edit/:id" component={EditListing} />
           <Route path="/create" component={CreateListing} />
           <Route path="/register" component={CreateUser} />
