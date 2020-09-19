@@ -1,19 +1,21 @@
-import React from "react";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import PropTypes from "prop-types";
-import axios from "axios";
+import globals from '../globals';
+
+import React from 'react';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import PropTypes from 'prop-types';
+import axios from 'axios';
 
 class CreateListing extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      owner: "",
-      geolocation: "",
-      headline: "",
-      description: "",
-      address: "",
+      owner: '',
+      geolocation: '',
+      headline: '',
+      description: '',
+      address: '',
       pictures: [],
       responses: [],
     };
@@ -67,7 +69,10 @@ class CreateListing extends React.Component {
     // Submit to database here
     console.log(listing);
     axios
-      .post("http://localhost:5000/listings/add", listing)
+      .post(
+        `http://${globals.hostname}:${globals.serverPort}/listings/add`,
+        listing
+      )
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
     // Bring user to homepage

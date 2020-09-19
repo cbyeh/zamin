@@ -1,10 +1,12 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
+const globals = require('./src/globals');
 
-require("dotenv").config();
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
 
-const errorHandler = require("./src/middleware/errorHandler");
+require('dotenv').config();
+
+const errorHandler = require('./src/middleware/errorHandler');
 
 const app = express();
 
@@ -14,20 +16,20 @@ app.use(express.json());
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true });
 const connection = mongoose.connection;
-connection.once("open", () => {
-  console.log("MongoDB database connection established successfully");
+connection.once('open', () => {
+  console.log('MongoDB database connection established successfully');
 });
 
-const usersRouter = require("./src/routes/users");
-const listingsRouter = require("./src/routes/listings");
+const usersRouter = require('./src/routes/users');
+const listingsRouter = require('./src/routes/listings');
 
-app.use("/users", usersRouter);
-app.use("/listings", listingsRouter);
+app.use('/users', usersRouter);
+app.use('/listings', listingsRouter);
 
 app.use(errorHandler.notFound);
 app.use(errorHandler.errorHandler);
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || globals.serverPort;
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);

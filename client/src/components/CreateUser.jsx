@@ -1,8 +1,10 @@
-import React from "react";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import axios from "axios";
-import PropTypes from "prop-types";
+import globals from '../globals';
+
+import React from 'react';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import axios from 'axios';
+import PropTypes from 'prop-types';
 
 // TODO: Make a popup instead, dim background
 class CreateUser extends React.Component {
@@ -10,9 +12,9 @@ class CreateUser extends React.Component {
     super();
 
     this.state = {
-      username: "",
-      email: "",
-      password: "",
+      username: '',
+      email: '',
+      password: '',
     };
 
     this.onChangeUsername = this.onChangeUsername.bind(this);
@@ -23,7 +25,7 @@ class CreateUser extends React.Component {
 
   componentDidMount() {
     // TODO: Get from axios
-    this.setState({ owner: "Me" });
+    this.setState({ owner: 'Me' });
   }
 
   onChangeUsername(e) {
@@ -56,14 +58,14 @@ class CreateUser extends React.Component {
     console.log(user);
     // TODO: use env for url
     axios
-      .post("http://localhost:5000/users/add", user)
+      .post(`http://${globals.hostname}:${globals.serverPort}/users/add`, user)
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
     // Bring user to homepage
     // window.location = "/";
     // Set username to blank in case it is taken
     this.setState({
-      username: "",
+      username: '',
     });
   }
 

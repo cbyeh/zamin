@@ -1,11 +1,11 @@
-import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-// import "./styles/App.css";
-import NavigationBar from "./components/NavigationBar";
-import Homepage from "./components/Homepage";
-import CreateListing from "./components/CreateListing";
-import CreateUser from "./components/CreateUser";
-import EditListing from "./components/EditListing";
+import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+// import './styles/App.css';
+import NavigationBar from './components/NavigationBar';
+import Homepage from './components/Homepage';
+import CreateListing from './components/CreateListing';
+import CreateUser from './components/CreateUser';
+import EditListing from './components/EditListing';
 
 function App() {
   return (

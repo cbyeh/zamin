@@ -1,19 +1,21 @@
-import React from "react";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import PropTypes from "prop-types";
-import axios from "axios";
+import globals from '../globals';
+
+import React from 'react';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import PropTypes from 'prop-types';
+import axios from 'axios';
 
 class EditListing extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      owner: "",
-      geolocation: "",
-      headline: "",
-      description: "",
-      address: "",
+      owner: '',
+      geolocation: '',
+      headline: '',
+      description: '',
+      address: '',
       date: new Date(), // Time created
       pictures: [],
       responses: [],
@@ -27,7 +29,9 @@ class EditListing extends React.Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:5000/listings/" + this.props.match.params.id)
+      .get(
+        `http://${globals.hostname}:${globals.serverPort}/listings/${this.props.match.params.id}`
+      )
       .then((res) => {
         this.setState({
           //   username: response.data.username,
@@ -39,7 +43,7 @@ class EditListing extends React.Component {
       });
 
     axios
-      .get("http://localhost:5000/users/")
+      .get(`http://${globals.hostname}:${globals.serverPort}/users/`)
       .then((res) => {
         if (res.data.length > 0) {
           this.setState({

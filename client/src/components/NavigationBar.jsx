@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   Button,
   Nav,
@@ -7,8 +7,8 @@ import {
   NavDropdown,
   Form,
   FormControl,
-} from "react-bootstrap";
-import PropTypes from "prop-types";
+} from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
 function handleLogin() {
   return 0;

@@ -1,7 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import globals from '../globals';
+
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const Listing = (props) => (
   <tr>
@@ -21,7 +23,7 @@ class ListingList extends React.Component {
   componentDidMount() {
     // Load all listings for now
     axios
-      .get("http://localhost:5000/listings/")
+      .get(`http://${globals.hostname}:${globals.serverPort}/listings/`)
       .then((res) => {
         this.setState({ listings: res.data });
       })
@@ -32,7 +34,7 @@ class ListingList extends React.Component {
 
   deleteListing(id) {
     axios
-      .delete("http://localhost:5000/listings/" + id)
+      .delete(`http://${globals.hostname}:${globals.serverPort}/listings/${id}`)
       .then((res) => console.log(res.data));
     this.setState({
       listings: this.state.listings.filter((el) => el._id !== id),
