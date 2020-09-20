@@ -15,9 +15,16 @@ router.route('/add').post((req, res) => {
   const headline = req.body.headline;
   const description = req.body.description;
   const address = req.body.address;
-  // const date = req.body.date;
+  const date = req.body.date;
 
-  const newListing = new Listing({ headline, address });
+  const newListing = new Listing({
+    owner,
+    geolocation,
+    headline,
+    description,
+    address,
+    date,
+  });
 
   newListing
     .save()

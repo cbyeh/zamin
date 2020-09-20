@@ -8,7 +8,7 @@ import axios from 'axios';
 const Listing = (props) => (
   <tr>
     <td>{props.listing.headline}</td>
-    <td>{props.listing.address}</td>
+    <td>{props.listing.address.address1}</td>
   </tr>
 );
 

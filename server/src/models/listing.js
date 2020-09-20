@@ -3,6 +3,28 @@ const User = require('./user');
 
 const Schema = mongoose.Schema;
 
+const addressSchema = new Schema({
+  address1: {
+    type: String,
+    required: true,
+  },
+  address2: {
+    type: String,
+  },
+  city: {
+    type: String,
+    // required: true,
+  },
+  state: {
+    type: String,
+    // required: true,
+  },
+  zip: {
+    type: Number,
+    // required: true,
+  },
+});
+
 const listingSchema = new Schema({
   owner: {
     type: User,
@@ -18,7 +40,7 @@ const listingSchema = new Schema({
     type: String,
   },
   address: {
-    type: String, // TODO:
+    type: addressSchema,
     required: true,
   },
   date: {
