@@ -6,7 +6,7 @@ import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
-// TODO: Make a popup instead, dim background
+// TODO: Make a popup instead, dim background, make password secure in server
 class CreateUser extends React.Component {
   constructor() {
     super();
@@ -17,9 +17,7 @@ class CreateUser extends React.Component {
       password: '',
     };
 
-    this.onChangeUsername = this.onChangeUsername.bind(this);
-    this.onChangeEmail = this.onChangeEmail.bind(this);
-    this.onChangePassword = this.onChangePassword.bind(this);
+    this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
@@ -28,25 +26,12 @@ class CreateUser extends React.Component {
     this.setState({ owner: 'Me' });
   }
 
-  onChangeUsername(e) {
-    this.setState({
-      username: e.target.value,
-    });
+  /** Handle change in fields **/
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
   }
 
-  onChangePassword(e) {
-    this.setState({
-      password: e.target.value,
-    });
-  }
-
-  onChangeEmail(e) {
-    this.setState({
-      email: e.target.value,
-    });
-  }
-
-  // When form is completed
+  /** When form is completed **/
   onSubmit(e) {
     e.preventDefault();
     const user = {
@@ -77,7 +62,8 @@ class CreateUser extends React.Component {
           <Form.Control
             type="email"
             placeholder="Enter email"
-            onChange={this.onChangeEmail}
+            name="email"
+            onChange={this.onChange}
             required
           />
           <Form.Text className="text-muted">
@@ -89,7 +75,8 @@ class CreateUser extends React.Component {
           <Form.Control
             type="password"
             placeholder="Password"
-            onChange={this.onChangePassword}
+            name="password"
+            onChange={this.onChange}
           />
           {/* TODO: put at least 5 characters */}
         </Form.Group>
