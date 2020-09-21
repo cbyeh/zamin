@@ -37,13 +37,11 @@ class EditListing extends React.Component {
           geolocation: res.data.geolocation,
           headline: res.data.headline,
           description: res.data.description,
-          address: {
-            address1: res.data.address1,
-            address2: res.data.address2,
-            city: res.data.city,
-            state: res.data.state,
-            zip: res.data.zip,
-          },
+          address1: res.data.address.address1,
+          address2: res.data.address.address2,
+          city: res.data.address.city,
+          state: res.data.address.state,
+          zip: res.data.address.zip,
         });
       })
       .catch(function (error) {
@@ -84,7 +82,7 @@ class EditListing extends React.Component {
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
     // Bring user to homepage
-    // window.location = "/";
+    window.location = '/';
   }
 
   render() {
@@ -98,6 +96,7 @@ class EditListing extends React.Component {
               size="lg"
               type="text"
               placeholder="Specials, discounts, etc"
+              value={this.state.headline}
               name="headline"
               onChange={this.onChange}
               required
@@ -114,6 +113,7 @@ class EditListing extends React.Component {
               as="textarea"
               rows="3"
               placeholder="Include more details here..."
+              value={this.state.description}
               name="description"
               onChange={this.onChange}
             />
@@ -123,6 +123,7 @@ class EditListing extends React.Component {
             <Form.Control
               type="text"
               placeholder="1234 Main St"
+              value={this.state.address1}
               name="address1"
               onChange={this.onChange}
             />
@@ -132,6 +133,7 @@ class EditListing extends React.Component {
             <Form.Control
               type="text"
               placeholder="Suite, number, special directions"
+              value={this.state.address2}
               name="address2"
               onChange={this.onChange}
             />
@@ -139,13 +141,19 @@ class EditListing extends React.Component {
           <Form.Row>
             <Form.Group controlId="formGridCity">
               <Form.Label>City</Form.Label>
-              <Form.Control type="text" name="city" onChange={this.onChange} />
+              <Form.Control
+                type="text"
+                name="city"
+                value={this.state.city}
+                onChange={this.onChange}
+              />
             </Form.Group>
             <Form.Group controlId="formGridState">
               <Form.Label>State</Form.Label>
               <Form.Control
                 as="select"
                 defaultValue="AL"
+                value={this.state.state}
                 name="state"
                 onChange={this.onChange}
               >
@@ -156,7 +164,12 @@ class EditListing extends React.Component {
             </Form.Group>
             <Form.Group controlId="formGridZip">
               <Form.Label>Zip</Form.Label>
-              <Form.Control type="number" name="zip" onChange={this.onChange} />
+              <Form.Control
+                type="number"
+                name="zip"
+                value={this.state.zip}
+                onChange={this.onChange}
+              />
             </Form.Group>
           </Form.Row>
           <Button

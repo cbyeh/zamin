@@ -64,7 +64,7 @@ class CreateListing extends React.Component {
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
     // Bring user to homepage
-    // window.location = "/";
+    window.location = '/';
   }
 
   render() {

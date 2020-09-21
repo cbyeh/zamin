@@ -1,13 +1,13 @@
 const router = require('express').Router();
 const { Listing } = require('../models/listing');
 
+/** Full Crud Ahead **/
+
 router.route('/').get((req, res) => {
   Listing.find()
     .then((listings) => res.json(listings))
     .catch((err) => res.status(400).json(`Error: ${err}`));
 });
-
-// FULL CRUD
 
 router.route('/add').post((req, res) => {
   const owner = req.body.owner;
@@ -47,7 +47,8 @@ router.route('/:id').delete((req, res) => {
 router.route('/update/:id').post((req, res) => {
   Listing.findById(req.params.id)
     .then((listing) => {
-      // Change every field entered, except Date which is kept the same for now
+      // Change every field entered,
+      // except Date which is kept as first created date for now
       listing.owner = req.body.owner;
       listing.geolocation = req.body.geolocation;
       listing.headline = req.body.headline;
