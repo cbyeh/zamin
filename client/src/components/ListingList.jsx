@@ -9,6 +9,17 @@ const Listing = (props) => (
   <tr>
     <td>{props.listing.headline}</td>
     <td>{props.listing.address.address1}</td>
+    <td>
+      <Link to={'/edit/' + props.listing._id}>edit</Link> |{' '}
+      <a
+        href="#"
+        onClick={() => {
+          props.deleteListing(props.listing._id);
+        }}
+      >
+        delete
+      </a>
+    </td>
   </tr>
 );
 
@@ -16,7 +27,7 @@ class ListingList extends React.Component {
   // TODO: Props with sorting and filtering
   constructor() {
     super();
-    this.deleteListing = this.deleteListing.bind;
+    this.deleteListing = this.deleteListing.bind(this);
     this.state = { listings: [] };
   }
 
@@ -61,6 +72,7 @@ class ListingList extends React.Component {
             <tr>
               <th>Headline</th>
               <th>Address</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>{this.listingList()}</tbody>

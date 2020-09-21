@@ -52,11 +52,7 @@ router.route('/update/:id').post((req, res) => {
       listing.headline = req.body.headline;
       listing.description = req.body.description;
       listing.address = req.body.address;
-      listing.date = Date.parse(req.body.date);
-      listing
-        .save()
-        .then(() => res.json('Listing updated'))
-        .catch((err) => res.status(400).json(`Error: ${err}`));
+      res.json('Listing edited');
     })
     .catch((err) => res.status(400).json(`Error: ${err}`));
 });

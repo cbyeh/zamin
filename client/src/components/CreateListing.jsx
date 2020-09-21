@@ -29,7 +29,7 @@ class CreateListing extends React.Component {
   }
 
   componentDidMount() {
-    // // TODO: Get from axios
+    // // TODO: Get user from axios
     // this.setState({ owner: "Me" });
   }
 
