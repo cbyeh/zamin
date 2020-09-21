@@ -10,14 +10,17 @@ const Listing = (props) => (
     <td>{props.listing.headline}</td>
     <td>{props.listing.address.address1}</td>
     <td>
-      <Link to={'/edit/' + props.listing._id}>edit</Link> |{' '}
+      <Link to={'/edit/' + props.listing._id}>
+        <img src="images/icon-edit.png" alt="edit" />
+      </Link>{' '}
+      |{' '}
       <a
         href="#"
         onClick={() => {
           props.deleteListing(props.listing._id);
         }}
       >
-        delete
+        <img src="images/icon-delete.png" alt="delete" />
       </a>
     </td>
   </tr>

@@ -47,12 +47,17 @@ router.route('/:id').delete((req, res) => {
 router.route('/update/:id').post((req, res) => {
   Listing.findById(req.params.id)
     .then((listing) => {
+      // Change every field entered, except Date which is kept the same for now
       listing.owner = req.body.owner;
       listing.geolocation = req.body.geolocation;
       listing.headline = req.body.headline;
       listing.description = req.body.description;
       listing.address = req.body.address;
-      res.json('Listing edited');
+
+      listing
+        .save()
+        .then(() => res.json('Listing edited'))
+        .catch((err) => res.status(400).json(`Error: ${err}`));
     })
     .catch((err) => res.status(400).json(`Error: ${err}`));
 });
