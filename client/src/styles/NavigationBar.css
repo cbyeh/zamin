@@ -1,3 +1,17 @@
-.mr-auto mr-auto-right {
-  position: right;
+.navbar {
+  -webkit-box-shadow: 0 8px 6px -6px #999;
+  -moz-box-shadow: 0 8px 6px -6px #999;
+  box-shadow: 0 8px 6px -6px #999;
+}
+
+.icon {
+  padding-right: 10000;
+}
+
+.navbar-right {
+}
+
+.homepage-link {
+  color: beige;
+  padding-left: 10;
 }
