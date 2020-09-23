@@ -33,7 +33,7 @@ class NavigationBar extends React.Component {
             <Form inline>
               <FormControl
                 type="text"
-                placeholder="Search for restaraunts, businesses, key phrases"
+                placeholder="Search for food, items, services"
                 className="mr-sm-2"
               />
               <Button variant="outline-success">Search</Button>
