@@ -10,7 +10,7 @@ This project started after seeing my favorite restaurants and small businesses h
 
 ## Technicalities
 
-The stack used is MongoDB with help from packages Mongoose, Express, and others. Node for package management and running the server, and React as our client framework.
+The stack used is MongoDB with help from packages Mongoose, Express, and others. AWS S3 to store images of listings. Node for package management and running the server, and React as our client framework.
 
 ## Onboarding
 

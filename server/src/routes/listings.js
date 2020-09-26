@@ -16,6 +16,7 @@ router.route('/add').post((req, res) => {
   const description = req.body.description;
   const address = req.body.address;
   const date = req.body.date;
+  const pictures = req.body.pictures;
 
   const newListing = new Listing({
     owner,
@@ -24,6 +25,7 @@ router.route('/add').post((req, res) => {
     description,
     address,
     date,
+    pictures,
   });
 
   newListing

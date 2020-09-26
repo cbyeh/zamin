@@ -20,7 +20,7 @@ class CreateListing extends React.Component {
       city: '',
       state: 'AL',
       zip: '',
-      pictures: [],
+      images: [],
       responses: [],
     };
 
@@ -28,12 +28,22 @@ class CreateListing extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  componentDidMount() {
-    // // TODO: Get user from axios
-    // this.setState({ owner: "Me" });
+  /** Pictures are uploaded or deleted */
+  onChangeImage(e) {
+    const files = Array.from(e.target.files);
+    const formData = new FormData();
+    files.forEach((file, i) => {
+      formData.append(i, file);
+    });
   }
 
-  /** Handle change in fields **/
+  removeImage(id) {
+    this.setState({
+      images: this.state.images.filter((image) => image.public_id !== id),
+    });
+  }
+
+  /** Handle change in fields */
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -54,6 +64,8 @@ class CreateListing extends React.Component {
         zip: this.state.zip,
       },
     };
+    // Upload images to s3 here
+    // TODO:
     // Submit to database here
     console.log(listing);
     axios
@@ -84,9 +96,10 @@ class CreateListing extends React.Component {
             />
           </Form.Group>
           <Form.Group>
-            <Form.File id="exampleFormControlFile1" label="Include images" />
+            <Form.File id="exampleFormControlFile1" />
             <Form.Text className="text-muted">Up to (5) max.</Form.Text>
           </Form.Group>
+          {this.state.images}
           <Form.Group controlId="formDescription">
             <Form.Label>Description</Form.Label>
             <Form.Control

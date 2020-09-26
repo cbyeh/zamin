@@ -23,8 +23,8 @@ class NavigationBar extends React.Component {
     return (
       <Navbar className="navbar" bg="light" expand="lg">
         <Navbar.Brand href="/">
-          <img className="icon" src="favicon.ico" height="30" />
-          Discover gems around you!
+          <img className="icon" src="favicon.ico" height="30" /> Discover gems
+          around you!
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">

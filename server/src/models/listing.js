@@ -48,6 +48,9 @@ const listingSchema = new Schema({
     default: Date.now,
     // required: true,
   },
+  pictures: {
+    type: [String], // URLs to images in s3
+  },
 });
 
 const Listing = mongoose.model('Listing', listingSchema);
