@@ -71,10 +71,10 @@ class ListingList extends React.Component {
   render() {
     return (
       <>
+        <Search listings={this.state.listings} />
         <table className="table">
           <thead className="thead-light">
             <tr>
-              <Search listings={this.state.listings} />
               <th>Headline</th>
               <th>Address</th>
               <th>Actions</th>
