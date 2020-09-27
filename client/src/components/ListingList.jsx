@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Search from './Search';
 
 const Listing = (props) => (
   <tr>
@@ -73,6 +74,7 @@ class ListingList extends React.Component {
         <table className="table">
           <thead className="thead-light">
             <tr>
+              <Search listings={this.state.listings} />
               <th>Headline</th>
               <th>Address</th>
               <th>Actions</th>
