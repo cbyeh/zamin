@@ -12,7 +12,7 @@ const Listing = (props) => (
     <td>{props.listing.address.address1}</td>
     <td>
       <Link to={'/edit/' + props.listing._id}>
-        <img src="images/icon-edit.png" alt="edit" />
+        <img src="images/icon-edit.png" alt="edit" loading="lazy" />
       </Link>{' '}
       |{' '}
       <a
@@ -21,7 +21,7 @@ const Listing = (props) => (
           props.deleteListing(props.listing._id);
         }}
       >
-        <img src="images/icon-delete.png" alt="delete" />
+        <img src="images/icon-delete.png" alt="delete" loading="lazy" />
       </a>
     </td>
   </tr>
@@ -71,10 +71,10 @@ class ListingList extends React.Component {
   render() {
     return (
       <>
+        <Search listings={this.state.listings} />
         <table className="table">
           <thead className="thead-light">
             <tr>
-              <Search listings={this.state.listings} />
               <th>Headline</th>
               <th>Address</th>
               <th>Actions</th>

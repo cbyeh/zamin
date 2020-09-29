@@ -36,11 +36,13 @@ Alternatively open settings (Ctrl+,) or (Cmd+,) on mac, then **Text Editor -> Fo
 
 Clone the repository: `git clone https://github.com/cbyeh/zamin.git`, install Git if you don't have it.
 
-Next go to both **client** and **server** directories and run `npm install`, install Node.js if you don't have it.
+Next go to both **client** and **server** directories and run `npm install` or `npm i`, install Node.js if you don't have it.
 
 Run `npm install -g nodemon`, which allows the server to automatically restart on code changes.
 
 Next create a **.env** file in **server** and paste the MongoDB ATLAS URI I provided, or create your own.
+
+Finally create a **config.js** file in **client/src** and paste the S3 bucket config I provided, or create your own.
 
 To run the app, use commands `nodemon server` in **server** and `npm start` in **client**.
 

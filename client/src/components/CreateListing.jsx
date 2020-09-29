@@ -4,7 +4,11 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import PropTypes from 'prop-types';
+
+import ReactS3 from 'react-s3';
 import axios from 'axios';
+
+import config from '../config';
 
 class CreateListing extends React.Component {
   constructor() {
@@ -41,6 +45,17 @@ class CreateListing extends React.Component {
     this.setState({
       images: this.state.images.filter((image) => image.public_id !== id),
     });
+  }
+
+  /** Upload images to S3 */
+  upload(e) {
+    ReactS3.upload(e.target.files[0], config)
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   /** Handle change in fields */

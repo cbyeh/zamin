@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class Search extends React.Component {
-  constructor(props) {
+  constructor() {
     super();
-
     Search.defaultProps = {
       listings: {},
     };
@@ -12,11 +11,9 @@ class Search extends React.Component {
 
   render() {
     return (
-      <>
-        <div className="search-bar">
-          <h1>Search</h1>
-        </div>
-      </>
+      <div className="search-bar">
+        <h1>Search</h1>
+      </div>
     );
   }
 }
