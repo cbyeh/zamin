@@ -3,9 +3,8 @@ import globals from '../globals';
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import PropTypes from 'prop-types';
 
-import ReactS3 from 'react-s3';
+import { uploadFile } from 'react-s3';
 import axios from 'axios';
 
 import config from '../config';
@@ -29,36 +28,30 @@ class CreateListing extends React.Component {
     };
 
     this.onChange = this.onChange.bind(this);
+    this.onAddImage = this.onAddImage.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  /** Pictures are uploaded or deleted */
-  onChangeImage(e) {
-    const files = Array.from(e.target.files);
-    const formData = new FormData();
-    files.forEach((file, i) => {
-      formData.append(i, file);
-    });
-  }
-
-  removeImage(id) {
+  /** Handle images being deleted */
+  onRemoveImage(id) {
     this.setState({
       images: this.state.images.filter((image) => image.public_id !== id),
     });
   }
 
-  /** Upload images to S3 */
-  upload(e) {
-    ReactS3.upload(e.target.files[0], config)
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  /** Handle images being added */
+  onAddImage(e) {
+    // console.log(e);
+    // this.setState({
+    //   images: this.state.images.concat(e),
+    // });
+    console.log(e);
+    uploadFile(e, config)
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err));
   }
 
-  /** Handle change in fields */
+  /** Handle change in text and drop down fields */
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -80,7 +73,12 @@ class CreateListing extends React.Component {
       },
     };
     // Upload images to s3 here
-    // TODO:
+    for (let image of this.state.images) {
+      console.log(image);
+      uploadFile(image, config)
+        .then((data) => console.log(data.location))
+        .catch((err) => console.log(err));
+    }
     // Submit to database here
     console.log(listing);
     axios
@@ -91,13 +89,14 @@ class CreateListing extends React.Component {
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
     // Bring user to homepage
-    window.location = '/';
+    // window.location = '/';
   }
 
   render() {
     return (
       <>
         <h3>Create New Listing</h3>
+
         <Form onSubmit={this.onSubmit}>
           <Form.Group controlId="formHeadline">
             <Form.Label>Headline</Form.Label>
@@ -111,7 +110,7 @@ class CreateListing extends React.Component {
             />
           </Form.Group>
           <Form.Group>
-            <Form.File id="exampleFormControlFile1" />
+            <input type="file" onChange={this.onAddImage} />
             <Form.Text className="text-muted">Up to (5) max.</Form.Text>
           </Form.Group>
           {this.state.images}

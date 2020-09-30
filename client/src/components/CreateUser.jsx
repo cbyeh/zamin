@@ -4,7 +4,6 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
-import PropTypes from 'prop-types';
 
 // TODO: Make a popup instead, dim background, make password secure in server
 class CreateUser extends React.Component {

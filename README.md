@@ -20,7 +20,7 @@ Our IDE of choice is Microsoft Visual Studio Code, install it if you haven't, or
 
 Next install the VSCode plugins **ESLint**, **Prettier ESLint**, and **Prettier - Code formatter** and make sure they're enabled.
 
-Add following lines to settings.json, which you can open from the Command Palette (Ctrl+Shift+P) or (Cmd+Shift+P) on Mac:
+Add following lines to **settings.json**, which you can open from the Command Palette (Ctrl+Shift+P) or (Cmd+Shift+P) on Mac:
 
 `"editor.formatOnSave": true`
 

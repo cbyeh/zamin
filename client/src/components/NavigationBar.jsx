@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import {
   Button,
   Nav,
@@ -8,7 +7,6 @@ import {
   Form,
   FormControl,
 } from 'react-bootstrap';
-import PropTypes from 'prop-types';
 import '../styles/NavigationBar.css';
 
 function handleLogin() {
