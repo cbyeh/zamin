@@ -4,7 +4,7 @@ class Search extends React.Component {
   constructor() {
     super();
     Search.defaultProps = {
-      listings: {},
+      listings: [],
     };
   }
 

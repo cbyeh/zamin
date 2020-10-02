@@ -12,7 +12,7 @@ const Listing = (props) => (
     <td>{props.listing.address.address1}</td>
     <td>
       <Link to={'/edit/' + props.listing._id}>
-        <img src="images/icon-edit.png" alt="edit" loading="lazy" />
+        <img src="app-images/icon-edit.png" alt="edit" loading="lazy" />
       </Link>{' '}
       |{' '}
       <a
@@ -21,7 +21,7 @@ const Listing = (props) => (
           props.deleteListing(props.listing._id);
         }}
       >
-        <img src="images/icon-delete.png" alt="delete" loading="lazy" />
+        <img src="app-images/icon-delete.png" alt="delete" loading="lazy" />
       </a>
     </td>
   </tr>

@@ -2,8 +2,7 @@
 
 const globals = {
   hostname: 'localhost',
-  clientPort: '3000',
-  serverPort: '5000',
+  serverPort: '8000',
 };
 
 export default globals;
