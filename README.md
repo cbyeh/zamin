@@ -40,9 +40,7 @@ Next go to both **client** and **server** directories and run `npm install` or `
 
 Run `npm install -g nodemon`, which allows the server to automatically restart on code changes.
 
-Next create a **.env** file in **server** and paste the MongoDB ATLAS URI I provided, or create your own.
-
-Finally create a **config.js** file in **client/src** and paste the S3 bucket config I provided (this is temporary for development), or create your own.
+Next create a **.env** file in **server** and paste the MongoDB ATLAS URI and AWS credentials I provided, or create your own.
 
 To run and test the app, use commands `nodemon server` in **server** and `npm start` in **client**.
 

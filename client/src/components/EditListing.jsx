@@ -4,7 +4,6 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-import { uploadFile, deleteFile } from 'react-s3';
 import axios from 'axios';
 
 class EditListing extends React.Component {

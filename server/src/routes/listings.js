@@ -1,14 +1,46 @@
 const router = require('express').Router();
 const { Listing } = require('../models/listing');
+const multer = require('multer');
+const S3 = require('aws-sdk/clients/s3');
 
-/** Full Crud Ahead **/
+//=================================
+//            Listing
+//=================================
 
+/** Upload images to AWS. Uploads a single file for now */
+router.route('/upload').post((req, res) => {
+  const file = req.file;
+  let bucket = new S3({
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_KEY,
+    region: process.env.AWS_REGION,
+  });
+
+  var params = {
+    ACL: 'public-read',
+    Bucket: process.env.AWS_BUCKET_NAME,
+    Key: file.originalname,
+    Body: file.buffer,
+    ContentType: file.mimetype,
+  };
+
+  bucket.upload(params, function (err, data) {
+    if (err) {
+      res.status(500).json({ error: true, Message: err });
+    } else {
+      // TODO:
+    }
+  });
+});
+
+/** Read all */
 router.route('/').get((req, res) => {
   Listing.find()
     .then((listings) => res.json(listings))
     .catch((err) => res.status(400).json(`Error: ${err}`));
 });
 
+/** Create */
 router.route('/add').post((req, res) => {
   const owner = req.body.owner;
   const geolocation = req.body.geolocation;
@@ -34,18 +66,21 @@ router.route('/add').post((req, res) => {
     .catch((err) => res.status(400).json(`Error: ${err}`));
 });
 
+/** Read by ID */
 router.route('/:id').get((req, res) => {
   Listing.findById(req.params.id)
     .then((listing) => res.json(listing))
     .catch((err) => res.status(400).json(`Error: ${err}`));
 });
 
+/** Delete by ID */
 router.route('/:id').delete((req, res) => {
   Listing.findByIdAndDelete(req.params.id)
     .then(() => res.json('Listing deleted'))
     .catch((err) => res.status(400).json(`Error: ${err}`));
 });
 
+/** Update by ID */
 router.route('/update/:id').post((req, res) => {
   Listing.findById(req.params.id)
     .then((listing) => {

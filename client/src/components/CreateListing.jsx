@@ -4,10 +4,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-import { uploadFile } from 'react-s3';
 import axios from 'axios';
-
-import config from '../config';
 
 class CreateListing extends React.Component {
   constructor() {
@@ -46,9 +43,9 @@ class CreateListing extends React.Component {
     //   images: this.state.images.concat(e),
     // });
     console.log(e);
-    uploadFile(e, config)
-      .then((data) => console.log(data))
-      .catch((err) => console.log(err));
+    // uploadFile(e, config)
+    //   .then((data) => console.log(data))
+    //   .catch((err) => console.log(err));
   }
 
   /** Handle change in text and drop down fields */
@@ -73,12 +70,12 @@ class CreateListing extends React.Component {
       },
     };
     // Upload images to s3 here
-    for (let image of this.state.images) {
-      console.log(image);
-      uploadFile(image, config)
-        .then((data) => console.log(data.location))
-        .catch((err) => console.log(err));
-    }
+    // for (let image of this.state.images) {
+    //   console.log(image);
+    //   uploadFile(image, config)
+    //     .then((data) => console.log(data.location))
+    //     .catch((err) => console.log(err));
+    // }
     // Submit to database here
     console.log(listing);
     axios

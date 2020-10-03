@@ -1,7 +1,0 @@
-// TODO
-
-getListing = () => {};
-
-mapListings = () => {};
-
-filterListings = () => {};
