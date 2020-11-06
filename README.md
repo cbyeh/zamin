@@ -1,4 +1,4 @@
-## About &middot; [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/cbyeh/zamin/issues) [![HitCount](http://hits.dwyl.com/cbyeh/zamin.svg)](http://hits.dwyl.com/cbyeh/zamin)
+## About &middot; [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/cbyeh/zamin/issues)
 
 This progressive web app creates a place to advertise local businesses. The advantage of using this is the ability for the businesses to not only advertise themselves, but sell according to their strengths, as they have full control in how to advertise.
 

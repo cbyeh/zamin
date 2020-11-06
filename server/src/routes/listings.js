@@ -24,13 +24,7 @@ router.route('/upload').post((req, res) => {
     ContentType: file.mimetype,
   };
 
-  bucket.upload(params, function (err, data) {
-    if (err) {
-      res.status(500).json({ error: true, Message: err });
-    } else {
-      // TODO:
-    }
-  });
+  bucket.upload(params).then().catch;
 });
 
 /** Read all */
