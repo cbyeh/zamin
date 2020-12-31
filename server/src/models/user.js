@@ -38,6 +38,9 @@ const userSchema = mongoose.Schema(
       type: Number,
       default: 0,
     },
+    subscriptions: {
+      type: [String] // IDs of establishments
+    },
     image: {
       type: String,
     },
